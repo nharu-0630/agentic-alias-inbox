@@ -29,7 +29,7 @@ async function createAliasFor(url) {
   return createAlias({ settings: connection.settings, api: connection.api, store, url });
 }
 
-// `extensionOnly` handlers expose every alias or the secret-bearing settings, so content scripts may not call them.
+// `extensionOnly` handlers expose every alias or call the Worker with caller-supplied settings, so content scripts may not use them.
 const handlers = {
   createAlias: { run: ({ url }) => createAliasFor(url) },
   listAliasesForSite: { run: async ({ url }) => ({ ok: true, aliases: await store.listBySite(siteOf(url)) }) },
