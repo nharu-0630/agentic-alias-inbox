@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Agentic Alias Inbox",
+  "version": "0.1.0",
+  "description": "メール欄でワンクリックでマスクメールを生成し、agentic-inbox にメールボックスを作成して入力します。",
+  "minimum_chrome_version": "120",
+  "permissions": ["storage", "contextMenus"],
+  "optional_host_permissions": ["https://*/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Agentic Alias Inbox の設定を開く"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "all_frames": true,
+      "match_about_blank": true,
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["lib/field.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
