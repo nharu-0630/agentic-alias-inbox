@@ -70,3 +70,11 @@ test("returns other failures immediately without saving", async () => {
   assert.equal(api.created.length, 1);
   assert.deepEqual(await store.list(), []);
 });
+
+test("never creates a mailbox for an unparseable page URL", async () => {
+  const api = fakeApi([ok]);
+  const store = createAliasStore(memoryArea());
+  const result = await createAlias({ settings, api, store, now, url: "not a url" });
+  assert.equal(result.kind, "bad-request");
+  assert.deepEqual(api.created, []);
+});
