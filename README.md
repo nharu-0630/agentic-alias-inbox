@@ -45,7 +45,7 @@ agentic-inbox は、メールボックスが存在しないアドレス宛ての
 2. Policies に新しいポリシーを追加します。
    - Action：**Service Auth**
    - Include：Selector に「Service Token」を選び、上で作成したトークンを指定
-3. 既存のブラウザログイン用の Allow ポリシー（nharu-private）は残したまま保存します。
+3. 既存のブラウザログイン用の Allow ポリシーは残したまま保存します。
 
 Action を Allow にすると、Access はトークンを受け付けてもログイン画面へリダイレクトします。
 トークンだけで通すには Service Auth が必要です。
